@@ -55,8 +55,7 @@ jobs:
       # Publish asset to exchange
       - name: Publish asset to exchange
         run:  | 
-          anypoint-cli-v4 exchange:asset:upload c036a1db-1d0e-44e3-a6fd-508188ecca19/mymuleapp/1.0.0-SNAPSHOT --files='{"mule-application.jar": "target/mymuleapp-1.0.0-SNAPSHOT-mule-application.jar"}' --type='app'
-
+          anypoint-cli-v4 exchange:asset:upload mymuleapp/1.0.0-SNAPSHOT --type='app' --name "mymuleapp" --properties='{"mainFile":"pom.xml","contactName":"Manogna","contactEmail":"mkakkunuri@example.com"}' --files='{"mule-application.jar": "target/mymuleapp-1.0.0-SNAPSHOT-mule-application.jar"}'
       # Deploy to CloudHub 2.0
       - name: Deploy to CloudHub 2.0
         run: |

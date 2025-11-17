@@ -1,0 +1,62 @@
+name: Build & Deploy Mule 4.9 App to CloudHub 2.0
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Setup Java 17
+      - name: Setup Java 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+
+      # Build Mule 4.9 app
+      - name: Build Mule App
+        run: mvn clean package
+
+      # Run MUnit tests
+      - name: Run MUnit Tests
+        run: mvn test -Dmunit
+
+      # Install Anypoint CLI v4
+      - name: Install Anypoint CLI
+        run: npm install -g anypoint-cli-v4
+
+      # Login using Client Credentials
+      - name: Anypoint Login
+        run: |
+          anypoint-cli-v4 auth:login \
+            --client-id "$ANYPOINT_CLIENT_ID" \
+            --client-secret "$ANYPOINT_CLIENT_SECRET" \
+            --org "$ANYPOINT_ORG_ID" \
+            --environment "$ANYPOINT_ENV_ID"
+        env:
+          ANYPOINT_CLIENT_ID: ${{ secrets.ANYPOINT_CLIENT_ID }}
+          ANYPOINT_CLIENT_SECRET: ${{ secrets.ANYPOINT_CLIENT_SECRET }}
+          ANYPOINT_ORG_ID: $ANYPOINT_ORG_ID
+          ANYPOINT_ENV_ID: $ANYPOINT_ENV_ID
+
+      # Deploy to CloudHub 2.0
+      - name: Deploy to CloudHub 2.0
+        run: |
+          anypoint-cli-v4 runtime-mgr-2 deploy-cloudhub-2 \
+            --artifact target/*.jar \
+            --application-name mymuleapp \
+            --region "$CH2_REGION" \
+            --runtime-version 4.9.0 \
+            --replicas 1 \
+            --cpu 0.1 \
+            --memory 0.2 \
+            --force
+        env:
+          CH2_REGION: ${{ secrets.CH2_REGION }}

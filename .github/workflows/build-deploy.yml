@@ -32,14 +32,6 @@ jobs:
       - name: Install Anypoint CLI
         run: npm install -g anypoint-cli-v4
 
-      # Login using Client Credentials
-      - name: Anypoint Login
-        run: |
-          anypoint-cli-v4 auth:login \
-            --client-id "$ANYPOINT_CLIENT_ID" \
-            --client-secret "$ANYPOINT_CLIENT_SECRET" \
-            --org "$ANYPOINT_ORG_ID" \
-            --environment "$ANYPOINT_ENV_ID"
         env:
           ANYPOINT_CLIENT_ID: ${{ secrets.ANYPOINT_CLIENT_ID }}
           ANYPOINT_CLIENT_SECRET: ${{ secrets.ANYPOINT_CLIENT_SECRET }}
@@ -49,14 +41,5 @@ jobs:
       # Deploy to CloudHub 2.0
       - name: Deploy to CloudHub 2.0
         run: |
-          anypoint-cli-v4 runtime-mgr-2 deploy-cloudhub-2 \
-            --artifact target/*.jar \
-            --application-name mymuleapp \
-            --region "$CH2_REGION" \
-            --runtime-version 4.9.0 \
-            --replicas 1 \
-            --cpu 0.1 \
-            --memory 0.2 \
-            --force
-        env:
-          CH2_REGION: ${{ secrets.CH2_REGION }}
+          anypoint-cli-v4 runtime-mgr:application:deploy mymuleapp 51e68b74-34bf-44f9-a9a3-a07afa04e916 4.9.11 mymuleapp --assetVersion 1.0.0-SNAPSHOT --groupId c036a1db-1d0e-44e3-a6fd-508188ecca19
+        

@@ -29,6 +29,30 @@
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
+				<configuration>
+					<cloudhub2Deployment>
+						<uri>https://anypoint.mulesoft.com</uri>
+						<provider>MC</provider>
+						<environment>Sandbox</environment>
+						<target>ch2-my-private-spcae</target>
+						<muleVersion>4.9.11</muleVersion>
+						<connectedAppClientId>1fa898770800442cabd360822e2ee2f8</connectedAppClientId>
+						<connectedAppClientSecret>0285920E69C84f74847B3794176F3fdC</connectedAppClientSecret>
+						<connectedAppGrantType>client_credentials</connectedAppGrantType>
+						<applicationName>${appName}</applicationName>
+						<replicas>1</replicas>
+						<vCores>1</vCores>
+						<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
+						<deploymentSettings>
+							<http>
+								<inbound>
+									<forwardSslSession>true</forwardSslSession>
+									<lastMileSecurity>true</lastMileSecurity>
+								</inbound>
+							</http>
+						</deploymentSettings>
+					</cloudhub2Deployment>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

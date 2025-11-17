@@ -39,7 +39,7 @@
 						<connectedAppClientId>1fa898770800442cabd360822e2ee2f8</connectedAppClientId>
 						<connectedAppClientSecret>0285920E69C84f74847B3794176F3fdC</connectedAppClientSecret>
 						<connectedAppGrantType>client_credentials</connectedAppGrantType>
-						<applicationName>${appName}</applicationName>
+						<applicationName>mymuleapp</applicationName>
 						<replicas>1</replicas>
 						<vCores>1</vCores>
 						<deploymentSettings>

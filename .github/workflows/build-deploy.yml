@@ -41,5 +41,5 @@ jobs:
       # Deploy to CloudHub 2.0
       - name: Deploy to CloudHub 2.0
         run: |
-          anypoint-cli-v4 runtime-mgr:application:deploy mymuleapp 51e68b74-34bf-44f9-a9a3-a07afa04e916 4.9.11 mymuleapp --assetVersion 1.0.0-SNAPSHOT --groupId c036a1db-1d0e-44e3-a6fd-508188ecca19
+          anypoint-cli-v4 runtime-mgr:application:deploy mymuleapp 51e68b74-34bf-44f9-a9a3-a07afa04e916 4.9.11 mymuleapp --assetVersion 1.0.0-SNAPSHOT --groupId c036a1db-1d0e-44e3-a6fd-508188ecca19 --client_id 1fa898770800442cabd360822e2ee2f8 --client_secret 0285920E69C84f74847B3794176F3fdC 
         

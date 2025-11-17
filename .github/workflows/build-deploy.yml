@@ -32,6 +32,26 @@ jobs:
       - name: Install Anypoint CLI
         run: npm install -g anypoint-cli-v4
 
+      # Configure Client ID
+      - name: Configure Client ID
+        run: |
+          anypoint-cli-v4 conf client_id 1fa898770800442cabd360822e2ee2f8
+      
+      # Configure Client Secret
+      - name: Configure Client Secret
+        run: |
+          anypoint-cli-v4 conf client_secret 0285920E69C84f74847B3794176F3fd
+          
+      # Configure Organization
+      - name: Configure Orgnization
+        run: |
+          anypoint-cli-v4 conf organization c036a1db-1d0e-44e3-a6fd-508188ecca19
+
+      # Execute Account Environment List
+      - name: Execute Account Environment List
+        run: |
+          anypoint-cli-v4 account:environment:list
+
       # Publish asset to exchange
       - name: Publish asset to exchange
         run:  | 

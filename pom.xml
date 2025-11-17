@@ -42,10 +42,10 @@
 						<applicationName>${appName}</applicationName>
 						<replicas>1</replicas>
 						<vCores>1</vCores>
-						<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
 						<deploymentSettings>
 							<http>
 								<inbound>
+									<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
 									<forwardSslSession>true</forwardSslSession>
 									<lastMileSecurity>true</lastMileSecurity>
 								</inbound>

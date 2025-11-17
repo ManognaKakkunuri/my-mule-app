@@ -35,7 +35,7 @@ jobs:
       # Publish asset to exchange
       - name: Publish asset to exchange
         run:  | 
-          anypoint-cli-v4 exchange:asset:upload --client_id 1fa898770800442cabd360822e2ee2f8 --client_secret 0285920E69C84f74847B3794176F3fd --organization c036a1db-1d0e-44e3-a6fd-508188ecca19 --group-id c036a1db-1d0e-44e3-a6fd-508188ecca19 --asset-id mymuleapp --version 1.0.0-SNAPSHOT --classifier mule-application --type jar --file target/mymuleapp-1.0.0-SNAPSHOT-mule-application.jar
+          anypoint-cli-v4 exchange:asset:upload --client_id 1fa898770800442cabd360822e2ee2f8 --client_secret 0285920E69C84f74847B3794176F3fd c036a1db-1d0e-44e3-a6fd-508188ecca19/mymuleapp/1.0.0-SNAPSHOT --files='{"mule-application.jar": "target/mymuleapp-1.0.0-SNAPSHOT-mule-application.jar"}' --type='jar' --name='mymuleapp'
 
       # Deploy to CloudHub 2.0
       - name: Deploy to CloudHub 2.0

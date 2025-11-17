@@ -45,7 +45,6 @@
 						<deploymentSettings>
 							<http>
 								<inbound>
-									<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
 									<forwardSslSession>true</forwardSslSession>
 									<lastMileSecurity>true</lastMileSecurity>
 								</inbound>
